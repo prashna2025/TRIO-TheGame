@@ -1,44 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Trio</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./CSS/style.css">
+
+  
 </head>
+
 <body>
 
-<div class="container">
-  <h1> Tic Tac Toe </h1>
+  <div class="container">
+    <h1> Tic Tac Toe </h1>
 
-  <div class="controls">
-    <select id="difficulty">
-      <option value="easy">Easy </option>
-      <option value="intermediate">Intermediate </option>
-      <option value="hard">Hard </option>
-    </select>
-    <button onclick="replayGame()">Replay</button>
+    <div class="splash">
+      <div class="logo">
+        <span class="o">O</span>
+        <span class="title">TRIO</span>
+        <span class="x">X</span>
+      </div>
+
+      <p class="tagline">3 in a row. Think smart-Win fast.</p>
+
+      <button onclick="startGame()">Lets the battle Begin</button>
+    </div>
+     <svg width="120" height="120" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="20" fill="#0f2027"/>
+  
+  <text x="25" y="70" font-size="40" fill="#00ffd5" font-family="Arial">O</text>
+  <text x="55" y="70" font-size="40" fill="white" font-family="Arial">T</text>
+  <text x="80" y="70" font-size="40" fill="#ff4d6d" font-family="Arial">X</text>
+</svg>
+    <hr>
+   
+   <div class="controls">
+      <select id="difficulty">
+        <option value="easy">Easy </option>
+        <option value="intermediate">Intermediate </option>
+        <option value="hard">Hard </option>
+      </select>
+      <button onclick="replayGame()">Replay</button>
   </div>
 
-  <h2 id="status">Turn: X</h2>
+    <h2 id="status">Turn: X</h2>
 
-  <div class="scoreboard">
-    <div>X: <span id="xScore">0</span></div>
-    <div>O: <span id="oScore">0</span></div>
-    <div>Draw: <span id="drawScore">0</span></div>
+    <div class="scoreboard">
+      <div>X: <span id="xScore">0</span></div>
+      <div>O: <span id="oScore">0</span></div>
+      <div>Draw: <span id="drawScore">0</span></div>
+    </div>
+
+    <div class="board">
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
+    </div>
   </div>
 
-  <div class="board">
-    <div class="cell" data-index="0"></div>
-    <div class="cell" data-index="1"></div>
-    <div class="cell" data-index="2"></div>
-    <div class="cell" data-index="3"></div>
-    <div class="cell" data-index="4"></div>
-    <div class="cell" data-index="5"></div>
-    <div class="cell" data-index="6"></div>
-    <div class="cell" data-index="7"></div>
-    <div class="cell" data-index="8"></div>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="./JAVASCRIPT/script.js"></script>
 </body>
+
 </html>

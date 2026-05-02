@@ -151,3 +151,6 @@ function replayGame(){
     c.classList.remove("win");
   });
 }
+function startGame() {
+  document.querySelector(".splash").style.display = "none";
+}
