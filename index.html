@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Trio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRIO</title>
   <link rel="stylesheet" href="./CSS/style.css">
-
-  
 </head>
 
 <body>
 
-  <div class="container">
-    <h1> Tic Tac Toe </h1>
+<div class="container">
 
-    <div class="splash">
-      <div class="logo">
-        <span class="o">O</span>
-        <span class="title">TRIO</span>
-        <span class="x">X</span>
-      </div>
-
-      <p class="tagline">3 in a row. Think smart-Win fast.</p>
-
-      <button onclick="startGame()">Lets the battle Begin</button>
+  <!-- SPLASH SCREEN -->
+  <div class="splash">
+    <div class="logo">
+      <span class="o">O</span>
+      <span class="title">TRIO</span>
+      <span class="x">X</span>
     </div>
-     <svg width="120" height="120" viewBox="0 0 120 120">
-  <rect width="120" height="120" rx="20" fill="#0f2027"/>
-  
-  <text x="25" y="70" font-size="40" fill="#00ffd5" font-family="Arial">O</text>
-  <text x="55" y="70" font-size="40" fill="white" font-family="Arial">T</text>
-  <text x="80" y="70" font-size="40" fill="#ff4d6d" font-family="Arial">X</text>
-</svg>
-    <hr>
-   
-   <div class="controls">
-      <select id="difficulty">
-        <option value="easy">Easy </option>
-        <option value="intermediate">Intermediate </option>
-        <option value="hard">Hard </option>
-      </select>
-      <button onclick="replayGame()">Replay</button>
+
+    <p class="tagline">3 in a row. Think smart - Win fast.</p>
+
+    <button onclick="startGame()">Let the Battle Begin</button>
   </div>
+
+  <!-- GAME UI -->
+  <div class="game">
+
+    <h1>TRIO</h1>
+
+    <div class="controls">
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <button onclick="replayGame()">Replay</button>
+    </div>
 
     <h2 id="status">Turn: X</h2>
 
@@ -61,9 +57,10 @@
       <div class="cell" data-index="7"></div>
       <div class="cell" data-index="8"></div>
     </div>
+
   </div>
+</div>
 
-  <script src="./JAVASCRIPT/script.js"></script>
+<script src="./JAVASCRIPT/script.js"></script>
 </body>
-
 </html>

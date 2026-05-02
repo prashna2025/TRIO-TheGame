@@ -1,19 +1,28 @@
+// 🎵 SOUNDS
+const clickSound = new Audio("sounds/click.wav");
+const winSound = new Audio("sounds/win.wav");
+const drawSound = new Audio("sounds/draw.wav");
+
+// GAME STATE
 let board = ["","","","","","","","",""];
 let currentPlayer = "X";
 let gameActive = true;
 
 let xScore=0, oScore=0, drawScore=0;
 
+// ELEMENTS
 const cells = document.querySelectorAll(".cell");
 const statusText = document.getElementById("status");
 const difficultySelect = document.getElementById("difficulty");
 
+// WIN CONDITIONS
 const winCond = [
  [0,1,2],[3,4,5],[6,7,8],
  [0,3,6],[1,4,7],[2,5,8],
  [0,4,8],[2,4,6]
 ];
 
+// EVENTS
 cells.forEach(cell => cell.addEventListener("click", handleClick));
 
 function handleClick(e){
@@ -25,12 +34,18 @@ function handleClick(e){
   if(gameActive) setTimeout(aiMove, 300);
 }
 
+// MOVE FUNCTION
 function makeMove(i,player){
   board[i]=player;
   cells[i].innerText=player;
+
+  clickSound.currentTime = 0;
+  clickSound.play();
+
   checkWinner();
 }
 
+// AI
 function aiMove(){
   let diff = difficultySelect.value;
   let move;
@@ -46,13 +61,16 @@ function aiMove(){
   makeMove(move,"O");
 }
 
+// RANDOM
 function randomMove(){
   let empty = board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
   return empty[Math.floor(Math.random()*empty.length)];
 }
 
+// BEST MOVE (MINIMAX)
 function bestMove(){
   let bestScore=-Infinity, move;
+
   for(let i=0;i<9;i++){
     if(board[i]===""){
       board[i]="O";
@@ -67,6 +85,7 @@ function bestMove(){
   return move;
 }
 
+// MINIMAX
 function minimax(b,isMax){
   let res = evaluate(b);
   if(res!==null) return res;
@@ -94,6 +113,7 @@ function minimax(b,isMax){
   }
 }
 
+// EVALUATE
 function evaluate(b){
   for(let [a,b1,c] of winCond){
     if(b[a] && b[a]===b[b1] && b[a]===b[c]){
@@ -104,15 +124,20 @@ function evaluate(b){
   return null;
 }
 
+// WIN CHECK
 function checkWinner(){
   for(let [a,b,c] of winCond){
     if(board[a] && board[a]===board[b] && board[a]===board[c]){
+
       cells[a].classList.add("win");
       cells[b].classList.add("win");
       cells[c].classList.add("win");
 
-      statusText.innerText=board[a]+" Wins!";
+      statusText.innerText = board[a]+" Wins!";
       gameActive=false;
+
+      winSound.currentTime=0;
+      winSound.play();
 
       if(board[a]==="X") xScore++;
       else oScore++;
@@ -124,9 +149,13 @@ function checkWinner(){
 
   if(!board.includes("")){
     statusText.innerText="Draw!";
+    gameActive=false;
+
+    drawSound.currentTime=0;
+    drawSound.play();
+
     drawScore++;
     updateScore();
-    gameActive=false;
     return;
   }
 
@@ -134,12 +163,14 @@ function checkWinner(){
   statusText.innerText="Turn: "+currentPlayer;
 }
 
+// SCORE
 function updateScore(){
   document.getElementById("xScore").innerText=xScore;
   document.getElementById("oScore").innerText=oScore;
   document.getElementById("drawScore").innerText=drawScore;
 }
 
+// RESTART
 function replayGame(){
   board=["","","","","","","","",""];
   gameActive=true;
@@ -151,6 +182,8 @@ function replayGame(){
     c.classList.remove("win");
   });
 }
-function startGame() {
-  document.querySelector(".splash").style.display = "none";
+
+// START GAME
+function startGame(){
+  document.querySelector(".splash").style.display="none";
 }

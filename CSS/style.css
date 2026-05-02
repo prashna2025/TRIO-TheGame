@@ -1,28 +1,83 @@
 body {
   margin: 0;
   font-family: 'Segoe UI';
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  color: white;
+  height: auto;
 }
 
+/* container */
 .container {
   text-align: center;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
+/* splash */
+.splash {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: opacity 0.6s ease;
+}
+
+/* logo */
+.logo {
+  font-size: 60px;
+  display: flex;
+  gap: 10px;
+}
+
+.x {
+  color: #00ffd5;
+  animation: float 2s infinite;
+}
+
+.o {
+  color: #ff4d6d;
+  animation: float 2s infinite;
+}
+
+.title {
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #00ffd5;
+  }
+
+  to {
+    text-shadow: 0 0 25px #00ffd5;
+  }
+}
+
+/* board */
 .board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   gap: 10px;
-  margin: 20px auto;
+  margin-top: 20px;
 }
 
 .cell {
@@ -32,7 +87,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
@@ -40,115 +95,32 @@ body {
 
 .cell:hover {
   transform: scale(1.1);
-  background: rgba(255,255,255,0.4);
 }
 
+/* win */
 .win {
   background: #00ffcc !important;
-  color: black;
-  animation: glow 0.6s infinite alternate;
 }
 
-@keyframes glow {
-  from { box-shadow: 0 0 5px #00ffcc; }
-  to { box-shadow: 0 0 20px #00ffcc; }
-}
-
-.controls {
-  margin-bottom: 10px;
-}
-
-select, button {
-  padding: 8px 12px;
+/* controls */
+button,
+select {
+  padding: 10px;
+  margin: 5px;
   border-radius: 8px;
   border: none;
-  margin: 5px;
   cursor: pointer;
 }
 
-.scoreboard {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
-}
-body {
-  margin: 0;
-  font-family: 'Segoe UI';
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color: white;
-}
+/* mobile */
+@media(max-width:600px) {
+  .board {
+    grid-template-columns: repeat(3, 80px);
+  }
 
-/* Splash screen */
-.splash {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Logo */
-.logo {
-  display: flex;
-  align-items: center;
-  font-size: 70px;
-  font-weight: bold;
-  letter-spacing: 5px;
-}
-
-/* X and O styling */
-.x, .o {
-  color: #00ffd5;
-  animation: float 2s infinite ease-in-out;
-}
-
-.o {
-  color: #ff4d6d;
-  animation-delay: 0.5s;
-}
-
-.title {
-  margin: 0 10px;
-  animation: glow 2s infinite alternate;
-}
-
-/* Tagline */
-.tagline {
-  margin-top: 10px;
-  opacity: 0.7;
-  animation: fadeIn 2s ease-in;
-}
-
-/* Button */
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  background: #00ffd5;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.1);
-  background: #00c2a8;
-}
-
-/* Animations */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 10px #00ffd5; }
-  to { text-shadow: 0 0 25px #00ffd5, 0 0 40px #00ffd5; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 0.7; }
+  .cell {
+    width: 80px;
+    height: 80px;
+    font-size: 30px;
+  }
 }
